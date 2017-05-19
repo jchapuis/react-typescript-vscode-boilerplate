@@ -1,0 +1,124 @@
+// Available variables which can be used inside of strings.
+// ${workspaceRoot}: the root folder of the team
+// ${file}: the current opened file
+// ${fileBasename}: the current opened file's basename
+// ${fileDirname}: the current opened file's dirname
+// ${fileExtname}: the current opened file's extension
+// ${cwd}: the current working directory of the spawned process
+{
+	"version": "0.1.0",
+	"command": "npm",
+	"isShellCommand": true,
+	"echoCommand": false,
+	"suppressTaskName": true,
+	"showOutput": "always",
+	"tasks": [
+		{
+			"taskName": "development",
+			"isBackground": true,
+			"args": [
+				"run",
+				"start"
+			],
+			"problemMatcher": [
+				{
+					"owner": "custom",		// this is a workaround to stop the task upon success, see https://github.com/Microsoft/vscode/issues/6209
+					"pattern": {
+						"regexp": "____________"
+					},
+					"watching": {
+						"activeOnStart": true,
+						"beginsPattern": "^webpack: Compiling\\.\\.\\.$",
+						"endsPattern": "^webpack: (Compiled successfully|Failed to compile)\\.$"
+					}
+				},
+				{
+					"owner": "javascript",
+					"severity": "error",
+					"applyTo": "closedDocuments",
+					"fileLocation": "absolute",
+					"pattern": [
+						{
+							"regexp": "^(Module build failed:\\s.*?:\\s(.*):(.*?))[\\s+](?:\\(([\\d-]+):([\\d-]+)\\))?$",
+							"message": 3,
+							"file": 2,
+							"line": 4,
+							"column": 5
+						}
+					]
+				},
+				{
+					"owner": "javascript",
+					"severity": "error",
+					"applyTo": "closedDocuments",
+					"fileLocation": "relative",
+					"pattern": [
+						{
+							"regexp": "^ERROR in ./(.*)\\s?$",
+							"file": 1
+						},
+						{
+							"regexp": "^.*?Error:\\s(.*').*$",
+							"message": 1
+						},
+						{
+							"regexp": "^\\s+@.*?(\\d+)(?:-([\\d]+))?:(\\d+)(?:-([\\d]+))?\\s?$",
+							"line": 1,
+							"endLine": 2,
+							"column": 3,
+							"endColumn": 4
+						}
+					]
+				}
+			]
+		},
+		{
+			"args": [
+				"run",
+				"build"
+			],
+			"taskName": "build",
+			"isBuildCommand": true,
+			"problemMatcher": [
+				{
+					"owner": "javascript",
+					"severity": "error",
+					"applyTo": "closedDocuments",
+					"fileLocation": "absolute",
+					"pattern": [
+						{
+							"regexp": "^(Module build failed:\\s.*?:\\s(.*):(.*?))[\\s+](?:\\(([\\d-]+):([\\d-]+)\\))?$",
+							"message": 3,
+							"file": 2,
+							"line": 4,
+							"column": 5
+						}
+					]
+				},
+				{
+					"owner": "javascript",
+					"severity": "error",
+					"applyTo": "closedDocuments",
+					"fileLocation": "relative",
+					"pattern": [
+						{
+							"regexp": "^ERROR in ./(.*)\\s?$",
+							"file": 1
+						},
+						{
+							"regexp": "^.*?Error:\\s(.*').*$",
+							"message": 1
+						},
+						{
+							"regexp": "^\\s+@.*?(\\d+)(?:-([\\d]+))?:(\\d+)(?:-([\\d]+))?\\s?$",
+							"line": 1,
+							"endLine": 2,
+							"column": 3,
+							"endColumn": 4
+						}
+					]
+				}
+			]
+		}
+	]
+}

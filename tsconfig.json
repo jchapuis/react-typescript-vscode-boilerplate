@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "es2015",
+        "module": "commonjs",
+        "sourceMap": true,
+        "preserveConstEnums": true
+    },
+    "exclude": [
+        "node_modules",
+        "typings"
+    ]
+}
