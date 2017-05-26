@@ -20,8 +20,5 @@ Material for reactive programming course
 - `.vscode/settings.json`: settings for visual studio code and extensions
 - `.vscode/tasks.json`: configuration of visual studio code tasks, will delegate to npm commands and e.g. support parsing console output from webpack to find out about errors  
 
-## Typings
-If libraries do not include the typescript sources inside the package, one must install a separate typing package. The easiest way to do this is via the `typings` command line tool. 
-
 ## Links
-The boilerplate is inspired from https://github.com/skolmer/react-hot-boilerplate-vscode and https://github.com/tomduncalf/typescript-react-template
+The project boilerplate is inspired from https://github.com/skolmer/react-hot-boilerplate-vscode and https://github.com/tomduncalf/typescript-react-template
