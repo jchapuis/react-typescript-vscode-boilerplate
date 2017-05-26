@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var WebpackNotifierPlugin = require('webpack-notifier');
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     // This option controls if and how source maps are generated: 
@@ -20,7 +21,7 @@ module.exports = {
         'webpack/hot/only-dev-server',
 
         // entry point of the application
-        './src/index.ts'
+        './app/index.ts'
     ],
 
     // Configuration for files emitted by webpack (bundles and assets)
@@ -36,6 +37,18 @@ module.exports = {
     // A list of webpack plugins, which customize the build process in various ways
     // https://webpack.js.org/configuration/plugins/#plugins
     plugins: [
+        // Html webpack plugins generates an HTML entry point to the application
+        new HtmlWebpackPlugin({
+            // Title of generated entry page
+            title: 'Reactive programming course',
+
+            // Inject all sources at the bottom of the body element
+            inject: true,
+
+            // Template page (contains the react application root element)
+            template: './app/index.html'    
+        }),
+
         // Hot module reload plugin (HMR)
         // https://survivejs.com/webpack/appendices/hmr/#enabling-hmr
         new webpack.HotModuleReplacementPlugin(), 

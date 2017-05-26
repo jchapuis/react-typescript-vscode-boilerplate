@@ -21,4 +21,7 @@ Material for reactive programming course
 - `.vscode/tasks.json`: configuration of visual studio code tasks, will delegate to npm commands and e.g. support parsing console output from webpack to find out about errors  
 
 ## Links
+Webpack guidebook: https://survivejs.com/webpack/
+
+## Credits
 The project boilerplate is inspired from https://github.com/skolmer/react-hot-boilerplate-vscode and https://github.com/tomduncalf/typescript-react-template
