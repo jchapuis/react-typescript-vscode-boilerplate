@@ -25,10 +25,10 @@
 
   "////": "these dependencies are required for building", 
   "devDependencies": {
-    "ts-loader": "^2.0.3",
+    "ts-loader": "^2.1.0",
     "source-map-loader": "^0.2.1",
 
-    "typescript": "^2.3.2",
+    "typescript": "^2.3.3",
     "tslint": "5.2.0",
 
     "webpack": "^2.5.1",
