@@ -3,7 +3,8 @@
         "target": "es2015",
         "module": "commonjs",
         "sourceMap": true,
-        "preserveConstEnums": true
+        "preserveConstEnums": true,
+        "allowSyntheticDefaultImports": true
     },
     "exclude": [
         "node_modules",

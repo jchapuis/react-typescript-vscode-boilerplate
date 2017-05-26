@@ -1,5 +1,5 @@
-import * as $ from 'jquery';
-import * as Rx from 'rxjs/Rx';
+import $ from 'jquery';
+import Rx from 'rxjs/Rx';
 
 class App {
     private subscription: Rx.Subscription;

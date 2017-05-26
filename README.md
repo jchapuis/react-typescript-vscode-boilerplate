@@ -2,10 +2,11 @@
 Material for reactive programming course
 
 ## Setup guide
-1. Install node.js and npm package manager: https://nodejs.org/en/
+1. Install node.js and npm package manager: https://nodejs.org/en/, or e.g. `sudo apt-get nodejs`, `sudo apt-get install npm`, `sudo apt-get install nodejs-legacy` (this latter one installs a symlink for `node` command to `nodejs`)
 2. Install visual studio code: https://code.visualstudio.com/
-3. Fork and clone this repo
-4. Run `npm install` in the root directory of this repo
+4. Install git (if required), e.g. `sudo apt-getnpm  install git` 
+3. Fork this repository in gitbug, and clone your repo: `git clone https://github.com/jchapuis/reactive.git`
+4. Run `npm install` in the root directory of this repo. 
 5. Run `npm start` or hit F5 in visual studio code to startup the application: it becomes available on http://localhost:3000
 
 ## rxjs support
