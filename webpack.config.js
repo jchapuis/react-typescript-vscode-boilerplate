@@ -3,27 +3,64 @@ var path = require('path');
 var WebpackNotifierPlugin = require('webpack-notifier');
 
 module.exports = {
-    devtool: 'cheap-source-map',    
+    // This option controls if and how source maps are generated: 
+    // https://webpack.js.org/configuration/devtool/
+    // https://survivejs.com/webpack/building/source-maps/
+    devtool: 'source-map', // best quality, can be used for production   
+
+    // The points to enter the application and start resolving modules (bundling)
+    // The application can have multiple entries, and each entry can result
+    // in multiple bundles. Entries are root modules (at the beginning of the 
+    // dependency graph).
+    // https://webpack.js.org/configuration/entry-context/
+    // https://survivejs.com/webpack/appendices/glossary/#developing
     entry: [        
+        // entry points for hot-reload dev server
         'webpack-dev-server/client?http://localhost:3000',
         'webpack/hot/only-dev-server',
+
+        // entry point of the application
         './src/index.ts'
     ],
+
+    // Configuration for files emitted by webpack (bundles and assets)
+    // https://webpack.js.org/configuration/output/
     output: {
+        // output directory as an absolute path
         path: path.join(__dirname, 'dist'),
-        publicPath: '/dist',
+
+        // name of each output bundle (single one here)
         filename: 'bundle.js'
     },
+
+    // A list of webpack plugins, which customize the build process in various ways
+    // https://webpack.js.org/configuration/plugins/#plugins
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),   // Hot module reload
-        new webpack.NamedModulesPlugin(),   // Named modules instead of number
+        // Hot module reload plugin (HMR)
+        // https://survivejs.com/webpack/appendices/hmr/#enabling-hmr
+        new webpack.HotModuleReplacementPlugin(), 
+
+        // Emit module paths instead of numeric IDs 
+        // https://survivejs.com/webpack/appendices/hmr/#making-the-module-ids-more-debuggable  
+        new webpack.NamedModulesPlugin(),   
+        
+        // Issue OS notifications upon webpack build
         new WebpackNotifierPlugin({ alwaysNotify: true })
     ],
 
+    // Change how modules are resolved
+    // https://webpack.js.org/configuration/resolve/#resolve
     resolve: {
+        // Automatically resolve certain extensions
+        // (defaults to 'extensions: [".js", ".json"]')
+        // https://webpack.js.org/configuration/resolve/#resolve-extensions
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".ts", ".tsx", ".js", ".json"],
-        modules: ['src', 'node_modules'],
+
+        // Tell webpack what directories should be searched when resolving modules
+        // (defaults to 'modules: ["node_modules"]')
+        // https://webpack.js.org/configuration/resolve/#resolve-modules
+        modules: [path.resolve(__dirname, "src"), "node_modules"],
     },
     module: {
         rules: [
@@ -35,10 +72,13 @@ module.exports = {
         ]
     },
 
-    // When importing a module whose path matches one of the following, just
-    // assume a corresponding global variable exists and use that instead.
-    // This is important because it allows us to avoid bundling all of our
-    // dependencies, which allows browsers to cache those libraries between builds.
+
+    // The externals configuration option provides a way of excluding dependencies
+    // from the output bundles. Instead, the created bundle relies on that dependency
+    // to be present in the consumer's environment. This allows resolving some libraries
+    // from CDNs instead of bundling them. This also allows browsers to cache those libraries between builds,
+    // so it's useful for a hot-reload dev configuration.
+    // https://webpack.js.org/configuration/externals/
     externals: {
         "rxjs/Rx": "Rx",
         "jquery": "$"

@@ -9,15 +9,21 @@
   "author": "Jonas Chapuis <jonas.chapuis@nexthink.com> (http://github.com/jchapuis)",
   "homepage": "https://gihub.com/jchapuis/reactive",
   "license": "Apache-2.0",
+
+  "//": "scripts are available with `npm` command, e.g. `npm start`", 
   "scripts": {
     "clean": "rimraf dist",
     "build": "webpack",
-    "start": "node server.js"
+    "start": "nodejs server.js"
   },
+
+  "///": "dependencies of the application, use `npm install` to download all", 
   "dependencies": {
     "rxjs": "^5.4.0",
     "jquery": "^3.2.1"
   },
+
+  "////": "these dependencies are required for building", 
   "devDependencies": {
     "ts-loader": "^2.0.3",
     "source-map-loader": "^0.2.1",

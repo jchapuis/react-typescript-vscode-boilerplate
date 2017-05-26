@@ -1,3 +1,5 @@
+// this script is invoked by the npm start command, defined in package.json
+// it starts the WebpackDevServer, which allows for hot-reloading of modules
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config');
