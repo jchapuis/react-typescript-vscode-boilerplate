@@ -1,7 +1,5 @@
 import * as $ from 'jquery';
 import * as Rx from 'rxjs/Rx';
-declare var module: any;
-module.hot.accept();
 
 class App {
     private subscription: Rx.Subscription;
@@ -11,7 +9,7 @@ class App {
         const throttledInput = Rx.Observable.fromEvent<Event>($input, 'keyup')
             .map(e => (e.target as HTMLInputElement).value)     // project the text from the input
             .filter(text => text.length > 2)                    // only if the text is longer than 2 chars
-            .debounceTime(500)                                  // max query rate is one every 200ms
+            .debounceTime(200)                                  // max query rate is one every 200ms
             .distinctUntilChanged();                            // only if the value has changed
 
         // launch search for each input, switching on latest results and cancelling any preceding searches
