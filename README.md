@@ -6,9 +6,10 @@ Boilerplate for hot-reload react-redux-observable Typescript experience in Visua
 2. Install visual studio code: https://code.visualstudio.com/
 4. Install git (if required), e.g. `sudo apt-get npm  install git` 
 3. Fork this repository in gitbug, and clone your repo: `git clone https://github.com/jchapuis/reactive.git`
-4. Run `npm install` in the root directory of this repo, this downloads all dependencies and tools.
+4. Install recommended visual studio code extensions for this project
+5. Run `npm install` in the root directory of this repo, this downloads all dependencies and tools.
 6. Run `npm run build` to build the application (this launches webpack behind the scenes) 
-5. Run `npm run start` or hit F5 in visual studio code to startup the application: it becomes available on http://localhost:8080
+7. Run `npm run start` or hit F5 in visual studio code to startup the application: it becomes available on http://localhost:8080
 
 ## Configuration files description
 - `package.json`: npm configuration file, lists all dependencies of the project, contains building scripts and package meta-information
@@ -21,17 +22,17 @@ Boilerplate for hot-reload react-redux-observable Typescript experience in Visua
 - `.vscode/tasks.json`: configuration of visual studio code tasks, will delegate to npm commands and e.g. support parsing console output from webpack to find out about errors  
 
 ## Shortcuts
-CRTL+SHIFT+B: Build (runs `npm run build`)
-F5: Run application and open chrome window (note that due to a vscode bug when stopping the debug session the server does not shut down, and you need to 'terminate running task')
-CTRL+SHIFT+T: Terminate running task (need to be customized, not built-in)
+- CRTL+SHIFT+B: Build (runs `npm run build`)
+- F5: Run application and open chrome window (note that due to a vscode bug when stopping the debug session the server does not shut down, and you need to 'terminate running task')
+- CTRL+SHIFT+T: Terminate running task (need to be customized, not built-in)
 
 ## Links
-Webpack guidebook: https://survivejs.com/webpack/
-Simple boilerplate from which this was inspired: https://github.com/Glavin001/react-hot-ts
-Another interesting guide (which involves Babel - we don't use it):
+ - Webpack guidebook: https://survivejs.com/webpack/.
+ - Simple boilerplate from which this was inspired: https://github.com/Glavin001/react-hot-ts
+- Another interesting guide (which involves Babel - we don't use it):
 http://blog.tomduncalf.com/posts/setting-up-typescript-and-react/
 
 ## Credits
-The project boilerplate is mostly inspired from https://github.com/Glavin001/react-hot-ts
-Other boilerplates worth mentionning:
+- The project boilerplate is mostly inspired from https://github.com/Glavin001/react-hot-ts
+- Other boilerplates worth mentionning:
 https://github.com/skolmer/react-hot-boilerplate-vscode and https://github.com/tomduncalf/typescript-react-template
