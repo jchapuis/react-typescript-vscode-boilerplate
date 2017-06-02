@@ -7,8 +7,8 @@ Boilerplate for hot-reload react-redux-observable Typescript experience in Visua
 4. Install git (if required), e.g. `sudo apt-get npm  install git` 
 3. Fork this repository in gitbug, and clone your repo: `git clone https://github.com/jchapuis/reactive.git`
 4. Run `npm install` in the root directory of this repo, this downloads all dependencies and tools.
-6. Run `npm build` to build the application (this launches webpack behind the scenes) 
-5. Run `npm run start` or hit F5 in visual studio code to startup the application: it becomes available on http://localhost:3000
+6. Run `npm run build` to build the application (this launches webpack behind the scenes) 
+5. Run `npm run start` or hit F5 in visual studio code to startup the application: it becomes available on http://localhost:8080
 
 ## Configuration files description
 - `package.json`: npm configuration file, lists all dependencies of the project, contains building scripts and package meta-information
