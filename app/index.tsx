@@ -25,9 +25,12 @@ render(App);
 
 // Handle hot reloading actions from Webpack
 if (module.hot) {
-  /* The code below should work but it doesn't due to some issue: https://github.com/webpack/webpack-dev-server/issues/100#issuecomment-290911036
-  module.hot.accept(
-    './containers/App', () => { render(App); });*/
+  // The code below should work but it doesn't due to some issue: https://github.com/webpack/webpack-dev-server/issues/100#issuecomment-290911036
+  // module.hot.accept('./containers/App', () => { render(App); });
+
   // If we receive a HMR request for our App container, then reload it using require (we can't do this dynamically with import)
+  module.hot.accept('./containers/App', () => {
     const NextApp = require('./containers/App').default;
+    render(NextApp);
+  });
 }

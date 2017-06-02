@@ -17,10 +17,14 @@ module.exports = {
     // https://survivejs.com/webpack/appendices/glossary/#developing
     entry: [ 
         // Add the react hot loader entry point - this needs to come first (you might only want this in your dev config)
+        // See procedure for react-hot-loader here: http://gaearon.github.io/react-hot-loader/getstarted/
         'react-hot-loader/patch',     
 
         // entry points for hot-reload dev server
         'webpack-dev-server/client?http://localhost:3000',
+
+        // bundle the client for hot reloading
+        // only- means to only hot reload for successful updates
         'webpack/hot/only-dev-server',
 
         // entry point of the application
@@ -83,6 +87,9 @@ module.exports = {
             // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
             // https://www.npmjs.com/package/ts-loader
             { test: /\.tsx?$/, loader: "ts-loader" },
+
+            // React hot loader, preserves components internal state
+            { enforce: "pre", test: /\.js$/, loader: "react-hot-loader/webpack" },
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader' (useful for libraries source maps).
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }

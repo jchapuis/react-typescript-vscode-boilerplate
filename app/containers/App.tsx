@@ -22,14 +22,18 @@ export default class App extends React.Component<IAppProps, AppState> {
         this.state = new AppState(0);
     }
 
+    public componentDidMount() {
+        this.setState(this.state);
+    }
+
     public render() {
         return (
             <div>
                 <span>
                     Amount: {this.state.counter}
                 </span>
-                <button onClick={() => this.setState(new AppState(this.state.counter + 2)) }>
-                    Add two
+                <button onClick={() => this.setState(new AppState(this.state.counter + 1)) }>
+                    Add one
                 </button>
             </div>
         );

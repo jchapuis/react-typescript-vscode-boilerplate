@@ -6,6 +6,7 @@
         "baseUrl": "app", // Allows us to use absolute-style imports for local modules
         "noImplicitAny": false, // tells tsc not to warn us if any variables are inferred as having a type of any. It’s actually probably good practice to set this to true, but it does mean you’ll potentially have to be more liberal with type annotations.
         "sourceMap": true, // tells tsc to output a source map, which enables easier debugging from the browser as it can tell you where in the original .ts source file an error occurred, rather than just in the compiled .js.
+        "isolatedModules": true,
         "preserveConstEnums": true,
         "jsx": "react", // Compile directly jsx to React.createElement function calls (since we are not going through Babel)
         "lib": [
