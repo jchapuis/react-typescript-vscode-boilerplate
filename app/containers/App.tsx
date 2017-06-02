@@ -1,40 +1,28 @@
 import * as React from 'react';
 
-export interface IAppProps {
-    message: string;
-}
-
-export class AppState {
-    public readonly counter: number;
-
-    constructor(count: number) {
-        this.counter = count;
-    }
-}
-
-export default class App extends React.Component<IAppProps, AppState> {
-    public props: IAppProps;
-    public state: AppState;
-
-    constructor(props) {
-        super(props);
-        this.props = props;
-        this.state = new AppState(0);
+export default class App extends React.Component<any, any> {
+    private interval: number;
+    constructor() {
+        super();
+        this.state = { count: 0 };
     }
 
-    public componentDidMount() {
-        this.setState(this.state);
+    // This state will be maintained during hot reloads
+    public componentWillMount() {
+        this.interval = setInterval(() => {
+            this.setState({ count: this.state.count + 1 });
+        }, 1000);
     }
 
+    public componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+ 
     public render() {
         return (
             <div>
-                <span>
-                    Amount: {this.state.counter}
-                </span>
-                <button onClick={() => this.setState(new AppState(this.state.counter + 1)) }>
-                    Add one
-                </button>
+                <h1>Hello world!</h1>
+                <div>Welcome to hot-reloading React written in TypeScript! {this.state.count}</div>
             </div>
         );
     }

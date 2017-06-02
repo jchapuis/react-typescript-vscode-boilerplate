@@ -15,17 +15,10 @@ module.exports = {
     // dependency graph).
     // https://webpack.js.org/configuration/entry-context/
     // https://survivejs.com/webpack/appendices/glossary/#developing
-    entry: [ 
+    entry: [
         // Add the react hot loader entry point - this needs to come first (you might only want this in your dev config)
         // See procedure for react-hot-loader here: http://gaearon.github.io/react-hot-loader/getstarted/
-        'react-hot-loader/patch',     
-
-        // entry points for hot-reload dev server
-        'webpack-dev-server/client?http://localhost:3000',
-
-        // bundle the client for hot reloading
-        // only- means to only hot reload for successful updates
-        'webpack/hot/only-dev-server',
+        'react-hot-loader/patch',
 
         // entry point of the application
         './app/index.tsx'
@@ -44,58 +37,60 @@ module.exports = {
     // A list of webpack plugins, which customize the build process in various ways
     // https://webpack.js.org/configuration/plugins/#plugins
     plugins: [
-        // Html webpack plugins generates an HTML entry point to the application
-        new HtmlWebpackPlugin({
-            // Title of generated entry page
-            title: 'Reactive programming course',
-
-            // Inject all sources at the bottom of the body element
-            inject: true,
-
-            // Template page (contains the react application root element)
-            template: './app/index.html'    
-        }),
+         // Emit module paths instead of numeric IDs 
+        // https://survivejs.com/webpack/appendices/hmr/#making-the-module-ids-more-debuggable  
+        new webpack.NamedModulesPlugin(),
 
         // Hot module reload plugin (HMR)
         // https://survivejs.com/webpack/appendices/hmr/#enabling-hmr
-        new webpack.HotModuleReplacementPlugin(), 
+        new webpack.HotModuleReplacementPlugin(),
+       
+        // Html webpack plugins generates an HTML entry point to the application
+        new HtmlWebpackPlugin({
+            // Title of generated entry page
+            title: 'React-Hot-Typecript',
+            chunksSortMode: 'dependency',
+            // Template page (contains the react application root element)
+            template: path.resolve(__dirname, './app/index.ejs')
+        }),
 
-        // Emit module paths instead of numeric IDs 
-        // https://survivejs.com/webpack/appendices/hmr/#making-the-module-ids-more-debuggable  
-        new webpack.NamedModulesPlugin(),   
-        
         // Issue OS notifications upon webpack build
-        new WebpackNotifierPlugin({ alwaysNotify: true })
+       new WebpackNotifierPlugin({ alwaysNotify: true })
     ],
 
     // Change how modules are resolved
     // https://webpack.js.org/configuration/resolve/#resolve
     resolve: {
         // Automatically resolve certain extensions
-        // (defaults to 'extensions: [".js", ".json"]')
+        // (defaults to 'extensions: ['.js', '.json']')
         // https://webpack.js.org/configuration/resolve/#resolve-extensions
         // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: [".ts", ".tsx", ".js", ".json"],
-
-        // Tell webpack what directories should be searched when resolving modules
-        // (defaults to 'modules: ["node_modules"]')
-        // https://webpack.js.org/configuration/resolve/#resolve-modules
-        modules: [path.join(__dirname, "app"), "node_modules"],
+        extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
     },
-    module: {
-        rules: [
-            // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
-            // https://www.npmjs.com/package/ts-loader
-            { test: /\.tsx?$/, loader: "ts-loader" },
-
-            // React hot loader, preserves components internal state
-            { enforce: "pre", test: /\.js$/, loader: "react-hot-loader/webpack" },
-
-            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader' (useful for libraries source maps).
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+     module: {
+        loaders: [
+            // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+            {
+                test: /\.tsx?$/,
+                loaders: [
+                    'react-hot-loader/webpack',
+                    'awesome-typescript-loader'
+                ],
+                exclude: path.resolve(__dirname, 'node_modules'),
+                include: path.resolve(__dirname, 'app'),
+            },
+            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+            {
+                enforce: 'pre',
+                test: /\.js$/,
+                loader: 'source-map-loader'
+            },
         ]
     },
 
+    devServer: {
+        hot: true
+    },
 
     // The externals configuration option provides a way of excluding dependencies
     // from the output bundles. Instead, the created bundle relies on that dependency
@@ -104,7 +99,7 @@ module.exports = {
     // so it's useful for a hot-reload dev configuration.
     // https://webpack.js.org/configuration/externals/
     externals: {
-        "rxjs/Rx": "Rx",
-        "jquery": "$"
+        'rxjs/Rx': 'Rx',
+        'jquery': '$'
     },
 };
