@@ -15,13 +15,16 @@ module.exports = {
     // dependency graph).
     // https://webpack.js.org/configuration/entry-context/
     // https://survivejs.com/webpack/appendices/glossary/#developing
-    entry: [        
+    entry: [ 
+        // Add the react hot loader entry point - this needs to come first (you might only want this in your dev config)
+        'react-hot-loader/patch',     
+
         // entry points for hot-reload dev server
         'webpack-dev-server/client?http://localhost:3000',
         'webpack/hot/only-dev-server',
 
         // entry point of the application
-        './app/index.ts'
+        './app/index.tsx'
     ],
 
     // Configuration for files emitted by webpack (bundles and assets)
@@ -73,11 +76,12 @@ module.exports = {
         // Tell webpack what directories should be searched when resolving modules
         // (defaults to 'modules: ["node_modules"]')
         // https://webpack.js.org/configuration/resolve/#resolve-modules
-        modules: [path.resolve(__dirname, "src"), "node_modules"],
+        modules: [path.join(__dirname, "app"), "node_modules"],
     },
     module: {
         rules: [
             // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
+            // https://www.npmjs.com/package/ts-loader
             { test: /\.tsx?$/, loader: "ts-loader" },
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader' (useful for libraries source maps).

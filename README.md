@@ -12,7 +12,7 @@ Material for reactive programming course
 
 ## Files description
 - `package.json`: npm configuration file, lists all dependencies of the project, contains building scripts and package meta-information
-- `tsconfig.json`: typescript compiler options
+- `tsconfig.json`: typescript compiler options (inspired from https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
 - `tslint.json`: typescript linter options & rules configuration
 - `webpack.config.js`: webpack configuration file
 - `.vscode/extensions.json`: recommended visual studio code extensions
@@ -22,6 +22,7 @@ Material for reactive programming course
 
 ## Links
 Webpack guidebook: https://survivejs.com/webpack/
+A setup guide from which this boilerplate was inspired: http://blog.tomduncalf.com/posts/setting-up-typescript-and-react/
 
 ## Credits
 The project boilerplate is inspired from https://github.com/skolmer/react-hot-boilerplate-vscode and https://github.com/tomduncalf/typescript-react-template
