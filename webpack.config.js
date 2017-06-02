@@ -48,7 +48,7 @@ module.exports = {
         // Html webpack plugins generates an HTML entry point to the application
         new HtmlWebpackPlugin({
             // Title of generated entry page
-            title: 'React-Hot-Typecript',
+            title: 'react-hot-ts',
             chunksSortMode: 'dependency',
             // Template page (contains the react application root element)
             template: path.resolve(__dirname, './app/index.ejs')

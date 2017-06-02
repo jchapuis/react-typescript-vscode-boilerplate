@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "target": "es5", // Emit directly to ES5 Javascript, supported in all browsers (hence no need of Babel)
-        "module": "es2015", // ES2015 module format, the most standard one, supported by webpack
+        "module": "commonjs", // This needs to be set to commonjs, otherwise for some reason the hot-reload-loader loses components state when reloading
         "moduleResolution": "node", // This allows Typescript to load type declarations supplied alongside npm packages
         "baseUrl": "app", // Allows us to use absolute-style imports for local modules
         "outDir": "./dist/", // Output directory
